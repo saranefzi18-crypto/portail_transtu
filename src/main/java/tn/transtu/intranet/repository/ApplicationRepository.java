@@ -2,5 +2,7 @@ package tn.transtu.intranet.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ApplicationRepository extends JpaRepository<ApplicationEntity, Long>{
+import tn.transtu.intranet.entity.Application;
+
+public interface ApplicationRepository extends JpaRepository<Application, Long>{
 }
