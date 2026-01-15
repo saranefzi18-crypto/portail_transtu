@@ -3,7 +3,7 @@ package tn.transtu.intranet.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class User {
+public class Users {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,9 +14,9 @@ public class User {
 	@Column(nullable = false)
 	private String role;
 	
-	public User() {}
+	public Users() {}
 	
-	public User(String username, String passwordHash, String role) {
+	public Users(String username, String passwordHash, String role) {
 		this.username=username;
 		this.passwordHash=passwordHash;
 		this.role=role;
