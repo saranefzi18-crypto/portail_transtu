@@ -13,16 +13,18 @@ public class Document {
     private String type;
     private String url;
     private LocalDateTime updatedAt;
+    private Application application;
     
     public Document() {
     }
     
-    public  Document(Long applicationId, String title, String type, String url, LocalDateTime updatedAt) {
+    public  Document(Long applicationId, String title, String type, String url, LocalDateTime updatedAt, Application application) {
     	this.applicationId=applicationId;
     	this.title=title;
     	this.type=type;
     	this.url=url;
     	this.updatedAt=updatedAt;
+    	this.application=application;
     }
 
     public Long getId() {
@@ -69,9 +71,16 @@ public class Document {
 		return updatedAt;
 	}
 
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
 	@PrePersist
     void onCreate() {
         updatedAt = LocalDateTime.now();
     }
+	
+	public void setApplication(Application application) { 
+		this.application = application; }
 
 }
