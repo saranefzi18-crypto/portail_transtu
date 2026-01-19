@@ -1,25 +1,32 @@
 package tn.transtu.intranet.entity;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
+
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 
 @Entity
 public class Document {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long applicationId;
     private String title;
     private String type;
     private String url;
     private LocalDateTime updatedAt;
+    @ManyToOne
+    @JoinColumn(name = "application_id")
     private Application application;
     
-    public Document() {
-    }
+    public Document() {}
     
-    public  Document(Long applicationId, String title, String type, String url, LocalDateTime updatedAt, Application application) {
-    	this.applicationId=applicationId;
+    public  Document(String title, String type, String url, LocalDateTime updatedAt, Application application) {
     	this.title=title;
     	this.type=type;
     	this.url=url;
@@ -33,14 +40,6 @@ public class Document {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getApplicationId() {
-		return applicationId;
-	}
-
-	public void setApplicationId(Long applicationId) {
-		this.applicationId = applicationId;
 	}
 
 	public String getTitle() {

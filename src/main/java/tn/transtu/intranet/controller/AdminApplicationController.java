@@ -15,6 +15,7 @@ import tn.transtu.intranet.service.ApplicationService;
 @RestController
 @RequestMapping("/api/admin/apps")
 public class AdminApplicationController {
+    
 	private final ApplicationService service;
 	
 	public AdminApplicationController(ApplicationService service) {

@@ -15,24 +15,24 @@ import tn.transtu.intranet.service.DocumentService;
 @RequestMapping("/api/admin/docs")
 public class AdminDocumentController {
 
-	 private final DocumentService service;
+	private final DocumentService service;
 	 
-	 public AdminDocumentController(DocumentService service) {
-	        this.service = service;
-	 }
+	public AdminDocumentController(DocumentService service) {
+	    this.service = service;
+	}
 	 
-	 @PostMapping("/apps/{appId}")
-	 public Document addDoc(@PathVariable Long appId, @RequestBody Document doc) {
-	       return service.addDocument(appId, doc);
-	    }
+	@PostMapping("/apps/{appId}")
+	public Document addDoc(@PathVariable Long appId, @RequestBody Document doc) {
+	    return service.addDocument(appId, doc);
+	}
 	 
-	 @PutMapping("/{docId}")
-	 public Document updateDoc(@PathVariable Long docId, @RequestBody Document doc) {
-	       return service.updateDocument(docId, doc);
-	 }
+	@PutMapping("/{docId}")
+	public Document updateDoc(@PathVariable Long docId, @RequestBody Document doc) {
+	    return service.updateDocument(docId, doc);
+	}
 	 
-	 @DeleteMapping("/{docId}")
-	 public void deleteDoc(@PathVariable Long docId) {
-	      service.deleteDocument(docId);
-	    }
+	@DeleteMapping("/{docId}")
+	public void deleteDoc(@PathVariable Long docId) {
+	    service.deleteDocument(docId);
+	}
 }
