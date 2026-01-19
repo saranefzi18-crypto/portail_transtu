@@ -26,12 +26,14 @@ public class DocumentService {
         return documentRepository.findByApplicationId(appId);
     }
     
-    public Document addDocument(Long appId, Document document) {
-        Application app = applicationRepository.findById(appId).orElseThrow(() -> new RuntimeException("Application not found with id: " + appId));
-
-        document.setApplication(app);
-        document.setUpdatedAt(LocalDateTime.now());
-        return documentRepository.save(document);
+    public Document addDocument(Document document) {
+    	if (document.getApplicationId() == null) {
+            throw new RuntimeException("applicationId must be provided");
+        }
+    	Application app = applicationRepository.findById(document.getApplicationId()).orElseThrow(() -> new RuntimeException("Application not found with id: " + document.getApplicationId()));
+    	document.setUpdatedAt(LocalDateTime.now());
+    	return documentRepository.save(document);
+    	
     }
     
     public Document updateDocument(Long docId, Document updatedDocument) {

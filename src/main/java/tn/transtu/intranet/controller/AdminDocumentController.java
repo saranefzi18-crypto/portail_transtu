@@ -22,8 +22,8 @@ public class AdminDocumentController {
 	}
 	 
 	@PostMapping("/apps/{appId}")
-	public Document addDoc(@PathVariable Long appId, @RequestBody Document doc) {
-	    return service.addDocument(appId, doc);
+	public Document addDoc(@RequestBody Document doc) {
+	    return service.addDocument(doc);
 	}
 	 
 	@PutMapping("/{docId}")

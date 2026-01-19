@@ -7,8 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 
 @Entity
@@ -16,25 +14,31 @@ public class Document {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+	private Long applicationId;
     private String title;
     private String type;
     private String url;
     private LocalDateTime updatedAt;
-    @ManyToOne
-    @JoinColumn(name = "application_id")
-    private Application application;
-    
+
     public Document() {}
     
-    public  Document(String title, String type, String url, LocalDateTime updatedAt, Application application) {
-    	this.title=title;
+    public  Document(Long applicationId, String title, String type, String url, LocalDateTime updatedAt) {
+    	this.applicationId=applicationId;
+		this.title=title;
     	this.type=type;
     	this.url=url;
     	this.updatedAt=updatedAt;
-    	this.application=application;
     }
 
-    public Long getId() {
+    public Long getApplicationId() {
+		return applicationId;
+	}
+
+	public void setApplicationId(Long applicationId) {
+		this.applicationId = applicationId;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
@@ -78,8 +82,5 @@ public class Document {
     void onCreate() {
         updatedAt = LocalDateTime.now();
     }
-	
-	public void setApplication(Application application) { 
-		this.application = application; }
 
 }
